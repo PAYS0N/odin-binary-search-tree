@@ -23,6 +23,14 @@ module OdinBinarySearchTree
       root
     end
 
+    def print
+      if @root.nil?
+        puts "The tree is empty"
+      else
+        pretty_print(@root)
+      end
+    end
+
     # print function from unknown fellow student
     def pretty_print(node = @root, prefix = "", is_left = true)
       pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -31,7 +39,8 @@ module OdinBinarySearchTree
     end
 
     def insert(val)
-      curr = @root
+      return @root = OdinBinarySearchTree::Node.new(val) if (curr = @root).nil?
+
       loop do
         if val < curr.val
           # if curr was not changed, then the insert was completed, and the function is done
@@ -47,7 +56,7 @@ module OdinBinarySearchTree
     def delete(val)
       return delete_root if @root.val == val
 
-      recursive_delete(root, val)
+      recursive_delete(@root, val)
     end
 
     private
@@ -126,6 +135,13 @@ module OdinBinarySearchTree
         node.val = node_to_delete.val
         node_to_delete.right.nil? ? delete_leaf(child, node_to_delete.val) : delete_one(node_to_delete)
       end
+    end
+
+    def delete_root
+      return @root = nil if leaf(@root)
+      return delete_two(@root) unless @root.left.nil? || @root.right.nil?
+
+      delete_one(@root)
     end
 
     def switch_right(node)
