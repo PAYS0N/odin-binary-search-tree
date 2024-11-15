@@ -2,10 +2,7 @@
 
 require_relative("binary_search_tree")
 
-tree = OdinBinarySearchTree::BinarySearchTree.new([1, 2, 3, 4, 5, 6, 7, 8])
-tree.pretty_print
 tree = OdinBinarySearchTree::BinarySearchTree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-tree.pretty_print
 tree.insert(12)
 tree.insert(13)
 tree.insert(12)
@@ -32,18 +29,27 @@ tree.delete(9)
 tree.delete(12)
 tree.delete(13)
 tree.delete(13.5)
-tree.pretty_print
 tree.delete(15)
-tree.pretty_print
 tree.delete(324)
-tree.pretty_print
-tree = OdinBinarySearchTree::BinarySearchTree.new([2])
+tree2 = OdinBinarySearchTree::BinarySearchTree.new([2])
+tree2.print
+tree2.delete(2)
+tree2.print
+tree2.insert(12)
+tree2.print
+tree2.insert(15)
+tree2.print
+tree2.insert(18)
+tree2.print
+puts tree2.find(15)
+puts tree2.find(14)
 tree.print
-tree.delete(2)
-tree.print
-tree.insert(12)
-tree.print
-tree.insert(15)
-tree.print
-tree.insert(18)
-tree.print
+tree.level_order { |node| print "#{node.val} " }
+puts ""
+# tree.preorder { |node| print "#{node.val} " }
+# puts ""
+# tree.inorder { |node| print "#{node.val} " }
+# puts ""
+# tree.postorder { |node| print "#{node.val} " }
+# puts ""
+# p tree.preorder

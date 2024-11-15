@@ -31,13 +31,6 @@ module OdinBinarySearchTree
       end
     end
 
-    # print function from unknown fellow student
-    def pretty_print(node = @root, prefix = "", is_left = true)
-      pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
-      puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.val}"
-      pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
-    end
-
     def insert(val)
       return @root = OdinBinarySearchTree::Node.new(val) if (curr = @root).nil?
 
@@ -59,7 +52,31 @@ module OdinBinarySearchTree
       recursive_delete(@root, val)
     end
 
+    def find(val, curr = @root)
+      return curr if curr.val == val
+      return find(val, curr.left) unless val > curr.val || curr.left.nil?
+
+      find(val, curr.right) unless curr.right.nil?
+    end
+
+    def level_order
+      queue = [@root]
+      until queue.empty?
+        node = queue.shift
+        queue.push(node.left) unless node.left.nil?
+        queue.push(node.right) unless node.right.nil?
+        yield(node)
+      end
+    end
+
     private
+
+    # print function from unknown fellow student
+    def pretty_print(node = @root, prefix = "", is_left = true)
+      pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
+      puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.val}"
+      pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+    end
 
     # changes current node if not there yet, otherwise inserts and doesnt change current
     def insert_helper_left(curr, val)
