@@ -99,6 +99,14 @@ module OdinBinarySearchTree
       nil
     end
 
+    # slow O(n^2)
+    def balanced?(node = @root)
+      return true if node.nil?
+      return false if (height(node.left) - height(node.right)).abs > 1
+
+      balanced?(node.left) && balanced?(node.right)
+    end
+
     private
 
     # print function from unknown fellow student

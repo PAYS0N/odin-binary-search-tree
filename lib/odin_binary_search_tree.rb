@@ -61,3 +61,10 @@ puts tree.height(tree.find(4.75))
 puts tree.depth(tree.find(4.75))
 puts tree.height(tree.find(4.25))
 puts tree.depth(tree.find(4.25))
+tree.print
+puts "balanced? #{tree.balanced?}"
+tree2.print
+puts "balanced? #{tree2.balanced?}"
+tree.insert(6.5)
+tree.print
+puts "balanced? #{tree.balanced?}"
