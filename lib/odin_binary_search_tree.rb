@@ -68,3 +68,6 @@ puts "balanced? #{tree2.balanced?}"
 tree.insert(6.5)
 tree.print
 puts "balanced? #{tree.balanced?}"
+tree.rebalance
+tree.print
+puts "balanced? #{tree.balanced?}"

@@ -107,6 +107,10 @@ module OdinBinarySearchTree
       balanced?(node.left) && balanced?(node.right)
     end
 
+    def rebalance
+      @root = build_tree(clean(preorder))
+    end
+
     private
 
     # print function from unknown fellow student
