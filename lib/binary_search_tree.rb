@@ -81,6 +81,12 @@ module OdinBinarySearchTree
       traverse(:postorder, &block)
     end
 
+    def height(node, height = 0)
+      return height - 1 if node.nil?
+
+      [height(node.left, height + 1), height(node.right, height + 1)].max
+    end
+
     private
 
     # print function from unknown fellow student

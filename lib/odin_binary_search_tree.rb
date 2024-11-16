@@ -53,3 +53,7 @@ puts ""
 tree.postorder { |node| print "#{node.val} " }
 puts ""
 p tree.preorder
+puts tree.height(tree.find(7))
+puts tree.height(tree.find(5))
+puts tree.height(tree.find(4.75))
+puts tree.height(tree.find(4.25))
