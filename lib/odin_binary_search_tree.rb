@@ -46,10 +46,10 @@ puts tree2.find(14)
 tree.print
 tree.level_order { |node| print "#{node.val} " }
 puts ""
-# tree.preorder { |node| print "#{node.val} " }
-# puts ""
-# tree.inorder { |node| print "#{node.val} " }
-# puts ""
-# tree.postorder { |node| print "#{node.val} " }
-# puts ""
-# p tree.preorder
+tree.preorder { |node| print "#{node.val} " }
+puts ""
+tree.inorder { |node| print "#{node.val} " }
+puts ""
+tree.postorder { |node| print "#{node.val} " }
+puts ""
+p tree.preorder

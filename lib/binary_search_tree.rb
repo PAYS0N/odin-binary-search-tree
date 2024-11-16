@@ -69,6 +69,18 @@ module OdinBinarySearchTree
       end
     end
 
+    def preorder(&block)
+      traverse(:preorder, &block)
+    end
+
+    def inorder(&block)
+      traverse(:inorder, &block)
+    end
+
+    def postorder(&block)
+      traverse(:postorder, &block)
+    end
+
     private
 
     # print function from unknown fellow student
@@ -170,6 +182,22 @@ module OdinBinarySearchTree
       node_to_write.val = node_to_read.val
       node_to_write.left = node_to_read.left
       node_to_write.right = node_to_read.right
+    end
+
+    def traverse(type, &block)
+      arr = []
+      block = ->(n) { arr.push(n.val) } if block.nil?
+
+      traverse_helper(type, @root, &block)
+      arr unless block_given?
+    end
+
+    def traverse_helper(type, node, &block)
+      yield(node) if type == :preorder
+      traverse_helper(type, node.left, &block) unless node.left.nil?
+      yield(node) if type == :inorder
+      traverse_helper(type, node.right, &block) unless node.right.nil?
+      yield(node) if type == :postorder
     end
   end
 end
