@@ -87,6 +87,18 @@ module OdinBinarySearchTree
       [height(node.left, height + 1), height(node.right, height + 1)].max
     end
 
+    def depth(node)
+      curr = @root
+      depth = 0
+      until curr == node || curr.nil?
+        curr = node.val < curr.val ? curr.left : curr.right
+        depth += 1
+      end
+      return depth unless curr.nil?
+
+      nil
+    end
+
     private
 
     # print function from unknown fellow student
